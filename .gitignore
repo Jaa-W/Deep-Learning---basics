@@ -1,4 +1,6 @@
 # FOLDERS
 env/
+*/__pycache__/
 
 # FILES
+*.cpython*
