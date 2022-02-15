@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from typing import Callable, List
-import MathFunctions as myMathFunctions
+import MathFunctions as myMathFun
 
 Array_Function = Callable[[np.ndarray], np.ndarray]
 Chain = List[Array_Function]
@@ -31,9 +31,9 @@ def chain_deriv_2(chain: Chain,
     f2 = chain[1]
     
     f1_of_x = f1(input_range)                           # df1/dx
-    df1_dx = myMathFunctions.deriv(f1, input_range)     # df1/du
+    df1_dx = myMathFun.deriv(f1, input_range)     # df1/du
     
-    df2_du = myMathFunctions.deriv(f2, f1_of_x) # df2/du(f1(x))
+    df2_du = myMathFun.deriv(f2, f1_of_x) # df2/du(f1(x))
     
     return df1_dx* df2_du
 
@@ -70,8 +70,8 @@ if __name__ == "__main__" :
     
     fig, ax = plt.subplots(1, 2, sharey=True, figsize=(12, 6))
     
-    chain_1 = [myMathFunctions.square, myMathFunctions.sigmoid]
-    chain_2 = [myMathFunctions.sigmoid, myMathFunctions.square]
+    chain_1 = [myMathFun.square, myMathFun.sigmoid]
+    chain_2 = [myMathFun.sigmoid, myMathFun.square]
     
     plot_chain(ax[0], chain_1, PLOT_RANGE)  
     plot_chain_deriv(ax[0], chain_1, PLOT_RANGE)

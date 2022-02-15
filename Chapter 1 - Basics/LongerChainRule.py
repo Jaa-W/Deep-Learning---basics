@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import ChainRule as myChainRule
-import MathFunctions as myMathFunctions
+import MathFunctions as myMathFun
 
 def chain_length_3(chain: myChainRule.Chain,
                    x: np.ndarray) -> np.ndarray:
@@ -30,9 +30,9 @@ def chain_deriv_3(chain: myChainRule.Chain,
     f1_of_x = f1(input_range)       # f1(x)
     f2_of_x = f2(f1_of_x)           # f2(f1(x))
 
-    df3_du = myMathFunctions.deriv(f3, f2_of_x)     # df3/du
-    df2_du = myMathFunctions.deriv(f2, f1_of_x)     # df2/du 
-    df1_du = myMathFunctions.deriv(f1, input_range) # df1/du
+    df3_du = myMathFun.deriv(f3, f2_of_x)     # df3/du
+    df2_du = myMathFun.deriv(f2, f1_of_x)     # df2/du 
+    df1_du = myMathFun.deriv(f1, input_range) # df1/du
     
     return df3_du * df2_du * df1_du
 
@@ -67,9 +67,9 @@ if __name__ == "__main__":
     PLOT_RANGE = np.arange(-3, 3, 0.01)
     
     chain = [
-        myMathFunctions.leaky_relu, 
-        myMathFunctions.sigmoid, 
-        myMathFunctions.square
+        myMathFun.leaky_relu, 
+        myMathFun.sigmoid, 
+        myMathFun.square
         ]
     
     plot_chain(chain, PLOT_RANGE)
