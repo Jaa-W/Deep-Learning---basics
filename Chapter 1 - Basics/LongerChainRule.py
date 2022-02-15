@@ -68,7 +68,7 @@ if __name__ == "__main__":
     
     chain = [
         myMathFunctions.leaky_relu, 
-        myChainRule.sigmoid, 
+        myMathFunctions.sigmoid, 
         myMathFunctions.square
         ]
     

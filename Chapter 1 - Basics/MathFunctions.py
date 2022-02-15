@@ -16,7 +16,10 @@ def deriv(func: Callable[[np.ndarray], np.ndarray],
     """Functions calculates derivative of "func" function for each element
     from input_ ndarray"""
     return (func(input_ + delta) - func(input_ - delta)) / (2*delta)
-    
+
+def sigmoid(x: np.ndarray) -> np.ndarray:
+    """Function uses sigmoid function for each element of input array""" 
+    return 1 / (1 + np.exp(-x))
 
 if __name__ == '__main__':
     # a = np.array([[2, -1, 7, -4],[0, 1, -5, 0.5]])

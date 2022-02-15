@@ -18,10 +18,6 @@ def chain_length_2(chain: Chain,
     
     return f2(f1(x))
 
-def sigmoid(x: np.ndarray) -> np.ndarray:
-    """Function uses sigmoid function for each element of input array""" 
-    return 1 / (1 + np.exp(-x))
-
 def chain_deriv_2(chain: Chain,
                   input_range: np.ndarray) -> np.ndarray:
     """Function uses chain rule to compute derivates"""
@@ -74,8 +70,8 @@ if __name__ == "__main__" :
     
     fig, ax = plt.subplots(1, 2, sharey=True, figsize=(12, 6))
     
-    chain_1 = [myMathFunctions.square, sigmoid]
-    chain_2 = [sigmoid, myMathFunctions.square]
+    chain_1 = [myMathFunctions.square, myMathFunctions.sigmoid]
+    chain_2 = [myMathFunctions.sigmoid, myMathFunctions.square]
     
     plot_chain(ax[0], chain_1, PLOT_RANGE)  
     plot_chain_deriv(ax[0], chain_1, PLOT_RANGE)
