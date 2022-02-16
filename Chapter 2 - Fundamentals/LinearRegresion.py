@@ -32,3 +32,36 @@ def forward_linear_regression(X_batch: np.ndarray,
     
     return loss, forward_info
     
+def loss_gradients(forward_info: Dict[str, np.ndarray],
+                   weights: Dict[str, np.ndarray]) -> np.ndarray:
+    """
+    Function compute dL/dW i dL/dB for step-by-step linear regression model
+    """
+    
+    batch_size = forward_info['X'].shape[0]
+    
+    dL_dP = -2 * (forward_info['y'] - forward_info['P'])    # dL/dP
+    
+    dP_dN = np.ones_like(forward_info['N'])                 # dP/dN
+    dP_dB = np.ones_like(weights['B'])                      # dP/dB
+    
+    dL_dN = dL_dP * dP_dN                                   # dL/dN
+    
+    dN_dW = np.transpose(forward_info['X'], (1,0))          # dN/dW
+    
+    # dN_dW must be at LEFT side
+    dL_dW = np.dot(dN_dW, dL_dN)                            # dL/dW
+    dL_dB = (dL_dP * dP_dB).sum(axis = 0)                   # dL/dB
+    
+    loss_gradients: Dict[str, np.ndarray] = {}
+    loss_gradients['W'] = dL_dW
+    loss_gradients['B'] = dL_dB
+    
+    return loss_gradients
+
+if __name__ == "__main__":
+    
+    np.set_printoptions(4)
+    
+    
+    

@@ -1,6 +1,6 @@
 import numpy as np
 from typing import Callable
-import MathFunctions as myMathFunctions
+import MathFunctions as myMathFun
 
 def matmul_forward(X: np.ndarray,
                    W: np.ndarray) -> np.ndarray:
@@ -66,7 +66,7 @@ def matrix_function_backward_1(X: np.ndarray,
     N = np.dot(X,W)
     S = sigma(N)
     
-    dS_dN = myMathFunctions.deriv(sigma, N)     # dS/dN
+    dS_dN = myMathFun.deriv(sigma, N)     # dS/dN
     dN_dX = np.transpose(W, (1,0))              # dN/dX
     
     return np.dot(dS_dN, dN_dX)
@@ -82,4 +82,4 @@ if __name__ == "__main__":
     print(X)
     X[0,2] = X[0,2] + 0.01
     print("\n", X)
-    print(matrix_function_backward_1(X, W, myMathFunctions.sigmoid))
+    print(matrix_function_backward_1(X, W, myMathFun.sigmoid))
